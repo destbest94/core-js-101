@@ -576,8 +576,20 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  const result = array.reduce((prev, curr) => {
+    const key = keySelector(curr);
+    const value = valueSelector(curr);
+    const res = prev;
+    if (res.has(key)) {
+      res.get(key).push(value);
+    } else {
+      res.set(key, [value]);
+    }
+    return res;
+  }, new Map());
+
+  return result;
 }
 
 
@@ -637,8 +649,19 @@ function getElementByIndexes(arr, indexes) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (arr.length === 1) return arr;
+  const center = Math.floor(arr.length / 2);
+  const res = [];
+  const head = arr.slice(0, center);
+  const cElement = arr.length % 2 === 0 ? null : arr[center];
+  const tail = arr.slice(arr.length - center);
+  res.push(...tail);
+  if (cElement) {
+    res.push(cElement);
+  }
+  res.push(...head);
+  return res;
 }
 
 
