@@ -2,7 +2,7 @@ const assert = require('assert');
 const tasks = require('../src/04-date-tasks');
 it.optional = require('../extensions/it-optional');
 
-describe.only('04-date-tasks', () => {
+describe('04-date-tasks', () => {
   it.optional('parseDataFromRfc2822 should parse rfc2822 string into a date value', () => {
     assert.equal(
       new Date(1995, 11, 17, 3, 24, 0).valueOf(),
